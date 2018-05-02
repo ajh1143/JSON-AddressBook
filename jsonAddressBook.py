@@ -25,7 +25,6 @@ or, update an existing file if it exists.
                 pass
             else:
                 break
-        return output_dict
 
     def add_to_file(self, person):
         filePath = input("Please enter your desired output or existing directory.")
