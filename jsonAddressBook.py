@@ -10,6 +10,7 @@ or, update an existing file if it exists.
 """
 
     def new_contact(self):
+        filePath = input("Please enter your desired output or existing directory.")
         output_dict = {}
         user_continue = bool
         while user_continue:
@@ -18,7 +19,7 @@ or, update an existing file if it exists.
             full_name = name_first + " " + name_last
             address =  input(print("Please enter " + name_first + "\'s" + " address."))
             output_dict = {full_name:address}
-            jsonAddressBook().add_to_file(output_dict)
+            jsonAddressBook().add_to_file(output_dict, filepath)
             print("Press enter to continue, or any other key to quit")
             keypress = ord(getch())
             if keypress == '13':
@@ -26,13 +27,12 @@ or, update an existing file if it exists.
             else:
                 break
 
-    def add_to_file(self, person):
-        filePath = input("Please enter your desired output or existing directory.")
-        if os.path.exists(filePath):
-            with open(filePath, 'a') as outfile:
+    def add_to_file(self, person, fileName):
+        if os.path.exists(fileName):
+            with open(fileName, 'a') as outfile:
                 json.dump(person, outfile)
         else:
-            with open(filePath, 'w') as outfile:
+            with open(fileName, 'w') as outfile:
                 json.dump(person, outfile)
 
 
